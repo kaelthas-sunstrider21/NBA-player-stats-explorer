@@ -58,32 +58,32 @@ def filedownload(df):
 
 st.markdown(filedownload(df_selected_team), unsafe_allow_html=True)
 
-# df_selected_team.to_csv('output.csv', index=False)
-# df = pd.read_csv('output.csv')
-# # ## Btw you can easily print debug while working
-# # st.write(df.dtypes.values.tolist()[2:4])
-# # ## Step 5: Let's get interactive
-# cols = df.columns.values.tolist()
-# cols = [c for c, t in zip(cols, df.dtypes.values.tolist())
-#         if "float" in str(t).lower() or "int" in str(t).lower()]
-# # cols
-# our_chosen_col = st.selectbox(label="Select A Column", options=cols)
-#
-# # ## Step 6: Let's use the value
-# c1, c2, c3 = st.columns(3)
-# with c1:
-#     st.header("Mean")
-#     st.metric(label="Mean", value=df[our_chosen_col].mean().round(1),
-#               delta=None)
-# with c2:
-#     st.header("Median")
-#     st.metric(label="Median",
-#               value=df[our_chosen_col].median().round(1),
-#               delta=(df[our_chosen_col].mean() - df[
-#                   our_chosen_col].median()).round(1))
-# with c3:
-#     st.header("Sum")
-#     st.metric(label="Sum", value=df[our_chosen_col].sum().round(1))
+df_selected_team.to_csv('output.csv', index=False)
+df = pd.read_csv('output.csv')
+# ## Btw you can easily print debug while working
+# st.write(df.dtypes.values.tolist()[2:4])
+# ## Step 5: Let's get interactive
+cols = df.columns.values.tolist()
+cols = [c for c, t in zip(cols, df.dtypes.values.tolist())
+        if "float" in str(t).lower() or "int" in str(t).lower()]
+# cols
+our_chosen_col = st.selectbox(label="Select A Column", options=cols)
+
+# ## Step 6: Let's use the value
+c1, c2, c3 = st.columns(3)
+with c1:
+    st.header("Mean")
+    st.metric(label="Mean", value=df[our_chosen_col].mean().round(1),
+              delta=None)
+with c2:
+    st.header("Median")
+    st.metric(label="Median",
+              value=df[our_chosen_col].median().round(1),
+              delta=(df[our_chosen_col].mean() - df[
+                  our_chosen_col].median()).round(1))
+with c3:
+    st.header("Sum")
+    st.metric(label="Sum", value=df[our_chosen_col].sum().round(1))
 
 # Heatmap
 if st.button('Intercorrelation Heatmap'):

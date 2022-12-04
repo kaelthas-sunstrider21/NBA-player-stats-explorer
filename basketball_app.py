@@ -30,7 +30,6 @@ def load_data(year):
     playerstats = raw.drop(['Rk'], axis=1)
     return playerstats
 
-
 playerstats = load_data(selected_year)
 
 # Sidebar - Team selection
@@ -49,7 +48,6 @@ st.write(
     'Data Dimension: ' + str(df_selected_team.shape[0]) + ' rows and ' + str(df_selected_team.shape[1]) + ' columns.')
 st.dataframe(df_selected_team)
 
-
 # Download NBA player stats data
 # https://discuss.streamlit.io/t/how-to-download-file-in-streamlit/1806
 def filedownload(df):
@@ -57,7 +55,6 @@ def filedownload(df):
     b64 = base64.b64encode(csv.encode()).decode()  # strings <-> bytes conversions
     href = f'<a href="data:file/csv;base64,{b64}" download="playerstats.csv">Download CSV File</a>'
     return href
-
 
 st.markdown(filedownload(df_selected_team), unsafe_allow_html=True)
 
